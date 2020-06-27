@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.score.mapper.GameReviewMapper">
+
+	<insert id="insert" parameterType="GameReviewVO">
+		INSERT INTO gamereview
+		(gameNumber, userNumber, userNickName, gameScore, gameReviewTitle, gameReviewContent) VALUES
+		(#{gameNumber},#{userNumber},#{userNickName},#{gameScore},#{gameReviewTitle},#{gameReviewContent})
+	</insert>
+
+	<select id="list" resultType="GameVO" parameterType="hashmap">
+		SELECT * FROM gamereview 
+	</select>
+
+	<update id="update" parameterType="GameReviewVO">
+		UPDATE gamereview SET
+		gameReviewText = #{gameReviewText}
+		WHERE gameReviewNumber =
+		#{gameReviewNumber}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Integer">
+		DELETE FROM gamereview WHERE
+		gameReviewNumber = #{gameReviewNumber}
+	</delete>
+
+	<select id="listSearch" resultType="GameReviewVO">
+		<![CDATA[  
+		select * from gamereview where gameReviewNumber > 0 order by gameReviewNumber desc limit #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="selectGame" parameterType="java.lang.Integer" resultType="GameVO"> 
+		select * from game where gameNumber = #{gameNumber}
+	</select>
+	
+	<select id="selectReviewList" parameterType="java.lang.Integer" resultType="GameReviewVO">  
+		SELECT * FROM gamereview where gameNumber = #{gameNumber} ORDER BY gameNumber DESC
+	</select>
+
+</mapper>

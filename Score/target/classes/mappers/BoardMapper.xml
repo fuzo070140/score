@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.score.mapper.BoardMapper">
+
+	<insert id="insert" parameterType="BoardVO">
+		INSERT INTO board
+		(userNickName, boardTitle, boardContent,userNumber) VALUES
+		(#{userNickName},#{boardTitle}, #{boardContent},#{userNumber})
+		<!-- https://blog.leocat.kr/notes/2017/07/22/mysql-ibatis-fetch-pk-after-insert -->
+	    <selectKey keyProperty="boardNumber" resultType="Integer">
+       	 SELECT LAST_INSERT_ID()
+    	</selectKey>
+	</insert>
+
+	<select id="list" resultType="BoardVO">
+		SELECT * FROM board
+	</select>
+
+	<select id="listPage" resultType="BoardVO">
+		<![CDATA[
+		select
+		*
+		from Board
+		where boardNumber > 0
+		order by boardNumber desc, boardRegDate desc
+		limit #{page}, 10
+		]]>
+	</select>
+
+	<select id="listCriteria" resultType="BoardVO">
+		<![CDATA[
+		select 
+		*
+		from Board
+		where boardNumber > 0
+		order by boardNumber desc, boardRegDate desc
+		limit #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+
+	<select id="countPaging" resultType="java.lang.Integer">
+		<![CDATA[
+		select 
+		count(boardNumber) 
+		from 
+		Board
+		where 
+		boardNumber > 0 
+		]]>
+	</select>
+
+	<select id="listSearch" resultType="BoardVO">
+		<![CDATA[  
+	  	select * 
+	 	 from Board
+	  	where boardNumber > 0 
+		]]>
+
+		<include refid="search"></include>
+		<![CDATA[    
+	 	 order by boardNumber desc
+	 	 limit #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+
+	<select id="listSearchCount" resultType="java.lang.Integer">
+		
+		<![CDATA[  
+	 	 select count(boardNumber) 
+	 	 from Board
+	 	 where boardNumber > 0 
+		]]>
+		<include refid="search"></include>
+	</select>
+
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				and boardTitle like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'c'.toString()">
+				and boardContent like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'w'.toString()">
+				and memNickName like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				and ( boardTitle like CONCAT('%', #{keyword}, '%') OR
+				boardContent
+				like
+				CONCAT('%', #{keyword}, '%'))
+			</if>
+			<if test="searchType == 'cw'.toString()">
+				and ( boardContent like CONCAT('%', #{keyword}, '%') OR
+				memNickName
+				like
+				CONCAT('%', #{keyword}, '%'))
+			</if>
+			<if test="searchType == 'tcw'.toString()">
+				and ( boardTitle like CONCAT('%', #{keyword}, '%')
+				OR
+				boardContent
+				like CONCAT('%', #{keyword}, '%')
+				OR
+				memNickName like
+				CONCAT('%',
+				#{keyword}, '%'))
+			</if>
+		</if>
+	</sql>
+
+	<select id="readPage" resultType="BoardVO">
+		SELECT * FROM board WHERE
+		boardNumber = #{boardNumber}
+	</select>
+
+	<update id="modify" parameterType="BoardVO">
+		UPDATE board
+		SET
+		boardTitle=
+		#{boardTitle},
+		boardContent = #{boardContent}
+		WHERE boardNumber =
+		#{boardNumber}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM board WHERE boardNumber = #{boardNumber}
+	</delete>
+
+	<!-- Board 테이블 유저기록 조회 -->
+	<select id="userSelectBoardAll"
+		parameterType="java.lang.Integer" resultType="BoardVO">
+		SELECT * FROM board WHERE
+		userNumber = #{userNumber};
+	</select>
+
+	<!-- 조회수 업 -->
+	<update id="boardViewCount" parameterType="java.lang.Integer">
+		UPDATE board SET
+		boardViewPoint = boardViewPoint+1 WHERE boardNumber = #{boardNumber}
+	</update>
+
+	<!-- 조회수 업 -->
+	<update id="boardReplyCount" parameterType="java.lang.Integer">
+		UPDATE board SET
+		boardReplyPoint = boardReplyPoint+1 WHERE boardNumber = #{boardNumber}
+	</update>
+	<!-- 조회수 업 -->
+	<update id="boardReplyDisCount" parameterType="java.lang.Integer">
+		UPDATE board SET
+		boardReplyPoint = boardReplyPoint-1 WHERE boardNumber = #{boardNumber}
+	</update>
+
+
+
+</mapper>

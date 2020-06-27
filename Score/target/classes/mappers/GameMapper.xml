@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.score.mapper.GameMapper">
+
+	<insert id="insert" parameterType="GameVO">
+		INSERT INTO game
+		(gameTitle, gameImg, gameDeveloper, gameDistributor, gamePlatform, gameSupportStatus, gameGenre, gameAgeGroup)
+		VALUES (#{gameTitle},#{gameImg},#{gameDeveloper},#{gameDistributor},#{gamePlatform},#{gameSupportStatus},#{gameGenre},#{gameAgeGroup})
+	</insert>
+	
+	<select id="list" resultType="GameVO">
+		SELECT * FROM game
+	</select>
+
+	<select id="readPage" resultType="GameVO">
+		SELECT * FROM game WHERE
+		gameNumber = #{gameNumber}
+	</select>
+	
+	<select id="listSearch" resultType="GameVO">
+		<![CDATA[  
+	  	select * 
+	 	 from Game
+	  	where GameNumber > 0 
+		]]>
+	
+		<include refid="search"></include>
+		<![CDATA[    
+	 	 order by GameNumber desc
+	 	 limit #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="listSearchCount" resultType="java.lang.Integer">
+		
+		<![CDATA[  
+	 	 select count(GameNumber) 
+	 	 from Game
+	 	 where GameNumber > 0 
+		]]>
+		<include refid="search"></include>
+	</select>
+	
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				and GameTitle like CONCAT('%', #{keyword}, '%')
+			</if>
+		</if>
+	</sql>
+	
+	<update id="modify" parameterType="GameVO">
+		UPDATE game
+		SET
+		gameTitle= #{gameTitle},
+		gameImg= #{gameImg},
+		gameDeveloper = #{gameDeveloper},
+		gameDistributor = #{gameDistributor},
+		gamePlatform = #{gamePlatform},
+		gameSupportStatus = #{gameSupportStatus},
+		gameGenre = #{gameGenre},
+		gameAgeGroup = #{gameAgeGroup}
+		WHERE gameNumber = #{gameNumber}
+	</update>
+	
+	<update id="gameScoreNumberOfPCount" parameterType="java.lang.Integer">
+		<![CDATA[  
+		update game set gameScoreNumberOfP = gameScoreNumberOfp + 1 where gameNumber = #{gameNumber};
+		]]>
+	</update>
+	
+	<update id="gameScoreUpdate" parameterType="java.util.HashMap">
+		update game set gameScore = (SELECT * FROM (select gameScore from game where gameNumber = #{gameNumber})AS a)+#{gameScore} where gameNumber = #{gameNumber};
+	</update>
+	
+	<update id="gameAvgScoreUpdate" parameterType="java.lang.Integer">
+		update game set gameAvgScore = (SELECT * FROM (select gameScore from game where gameNumber = #{gameNumber})AS a)/(SELECT * FROM (select gameScoreNumberOfP from game where gameNumber = #{gameNumber})AS b) where gameNumber = #{gameNumber};
+	</update>
+	
+	
+
+</mapper>

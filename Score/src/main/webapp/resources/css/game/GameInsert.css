@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+.newGame_list {
+	height: 350px;
+	padding: 0px;
+	margin-top: 32px;
+}
+
+.game_list {
+	height: 600px;
+	background-color: gray;
+}
+
+.page_list {
+	height: 300px;
+	background-color: navy;
+}
+
+.newGame_list_header {
+	background-color: #2e2e2e;
+	font-size: 20px;
+}
+
+.newGame_list_body {
+	height: 320px;
+	margin-bottom: 32px;
+	padding-top: 32px;
+	background: linear-gradient(to top, #808080 , #303030);
+}
+
+.newGame_list_body_img{
+	height: 150px;
+	text-align: center;
+	font-size: 0px;
+}
+
+.newGame_list_body_img img{
+	display: inline-block;
+	margin: 0 123px;
+}
+
+.newGame_list_body_text {
+	height: 138px;
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.score.mapper.GameReplyMapper">
+
+	<insert id="insert">
+		INSERT INTO gameReply (userNickName, userNumber, gameReplyContent, gameNumber) VALUES (#{userNickName}, #{userNumber}, #{gameReplyContent}, #{gameNumber});
+	</insert>
+	
+	<select id="replyList" parameterType="Map" resultType="GameReplyVO">
+		SELECT * FROM gameReply where gameNumber = #{gameNumber}
+ 		<choose>
+			<when test="gameReplyPoint == 5">
+				limit #{gameReplyPoint}
+			</when>
+		</choose>
+	</select>
+	
+	<delete id="replyDelete" parameterType="java.lang.Integer">
+		DELETE FROM gameReply WHERE gameReplyNumber = #{gameReplyNumber}
+	</delete>
+	
+	<update id="replyUpdate" parameterType="Map">
+		UPDATE gameReply SET gameReplyContent = ${gameReplyContent} WHERE gameReplyNumber = #{gameReplyNumber}
+	</update>
+	
+	<select id="replySelect" parameterType="java.lang.Integer" resultType="GameReplyVO">
+		SELECT * FROM gameReply WHERE gameReplyNumber = #{gameReplyNumber}
+	</select>
+	
+	
+
+</mapper>
