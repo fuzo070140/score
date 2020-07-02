@@ -10,12 +10,6 @@ public class UserVO {
 	
 	private Integer userNumber;
 	private String userCategory;
-	public String getUserCategory() {
-		return userCategory;
-	}
-	public void setUserCategory(String userCategory) {
-		this.userCategory = userCategory;
-	}
 	private String userID;
 	private String userNickName;
 	private String userPassWord;
@@ -27,8 +21,36 @@ public class UserVO {
 	private int userPoint;
 	private int userPointPeople;
 	private String userThumbImg;
+	private String userCompanyName;
+	private String userCompanyNumber;
+	private String userCompanyAddress;
+	private String userManager;
+	private String userManagerPhone;
 	
-	
+	public String getUserCategory() {
+		return userCategory;
+	}
+	public void setUserCategory(String userCategory) {
+		this.userCategory = userCategory;
+	}
+	public String getUserCompanyName() {
+		return userCompanyName;
+	}
+	public void setUserCompanyName(String userCompanyName) {
+		this.userCompanyName = userCompanyName;
+	}
+	public String getUserManager() {
+		return userManager;
+	}
+	public void setUserManager(String userManager) {
+		this.userManager = userManager;
+	}
+	public String getUserManagerPhone() {
+		return userManagerPhone;
+	}
+	public void setUserManagerPhone(String userManagerPhone) {
+		this.userManagerPhone = userManagerPhone;
+	}
 	public String getUserThumbImg() {
 		return userThumbImg;
 	}
@@ -101,5 +123,16 @@ public class UserVO {
 	public void setUserPointPeople(int userPointPeople) {
 		this.userPointPeople = userPointPeople;
 	}
-	
+	public String getUserCompanyNumber() {
+		return userCompanyNumber;
+	}
+	public void setUserCompanyNumber(String userCompanyNumber) {
+		this.userCompanyNumber = userCompanyNumber;
+	}
+	public String getUserCompanyAddress() {
+		return userCompanyAddress;
+	}
+	public void setUserCompanyAddress(String userCompanyAddress) {
+		this.userCompanyAddress = userCompanyAddress;
+	}
 }

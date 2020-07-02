@@ -29,7 +29,7 @@ public class GameReviewServiceImpl implements GameReveiwService {
 	public int insert(GameReviewVO vo) {
 		int re = dao.insert(vo);
 		Gdao.gameScoreNumberOfPCount(vo.getGameNumber());
-		Gdao.gameScoreUpdate(vo.getGameNumber(), vo.getGameScore());
+		Gdao.gameScoreUpdate(vo.getGameNumber(), vo.getGameReviewScore());
 		Gdao.gameAvgScoreUpdate(vo.getGameNumber());
 		return re;
 	}

@@ -29,7 +29,9 @@
 				<hr>
 				<div class="gameReview">
 					<c:forEach items="${gameReviewVO}" var="vo">
-						${vo.gameReviewTitle }
+						리뷰자 : ${vo.userNickName } <br/>
+						리뷰 내용 : ${vo.gameReviewTitle } <br/>
+						리뷰 점수 : ${vo.gameReviewScore }
 						<br/>
 					</c:forEach>
 				</div>

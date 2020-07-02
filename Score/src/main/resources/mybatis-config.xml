@@ -8,8 +8,9 @@
 <configuration>
 
 	<typeAliases>
-		<package name="com.score.domain.vo"/>
-		<package name="com.score.domain.dto"/>
+		<package name="com.score.domain.vo" />
+		<package name="com.score.domain.dto" />
+		<package name="com.score.domain.admin.vo" />
 	</typeAliases>
 
 </configuration>

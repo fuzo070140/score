@@ -10,7 +10,6 @@
 	<!-- Bootstrap -->
 	<link href="/score/resources/css/bootstrap-4.4.1/css/bootstrap.min.css" rel="stylesheet">
 	
-	<link rel="stylesheet" href="/score/resources/css/base.css">
 	<link rel="stylesheet" href="/score/resources/css/header.css">
 </head><body>
 	<nav class="navbar navbar-expand-sm bg-primary navbar-dark"> <!-- 리스트 : 부트스트랩은 모바일 우선이라 화면이 작으면 아래로 쌓아서 내려온다 --> 

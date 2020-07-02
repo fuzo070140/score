@@ -17,6 +17,7 @@
 		</div>
 		<div class="col-sm-6 col-md-offset-3">
 			<form action="/score/User/register" method="post" enctype="multipart/form-data" id="registerForm">
+				<input type="hidden" name="userCategory" value="nomal" id="userCategory">
 				<div class="form-group">
 					<label for="userID">아이디</label> <input type="text" class="form-control" id="userID" placeholder="아이디를 입력해 주세요" name="userID" autocomplete="username">
 					<button type="button" class="btn btn-primary" id="userIDCheckBtn">아이디 중복확인</button>
@@ -78,6 +79,8 @@
 			var userPassWordFin = $("#userPassWordFin").val();
 			var userNickName = $("#userNickName").val();
 			var userEmail = $("#userEmail").val();
+			
+			$("#registerForm").submit();
 
 			if (isEmpty(userID)) {
 				alert("아이디를 확인해주세요");

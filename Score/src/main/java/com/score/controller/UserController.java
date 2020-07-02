@@ -83,17 +83,22 @@ public class UserController {
 			vo.setUserThumbImg(File.separator + "imgUpload" + File.separator + "userThumb" + File.separator + "none.jpg");
 		}
 		vo.setUserEmailCheck("yes");
-		vo.setUserCategory("Nomal");
 
-		if (service.registerCheck(vo) != null) {
-			return "/User/UserRegisterFinFail";
-		} else {
-			if (service.register(vo) == 1) {
-				return "redirect:/";
-			} else {
+		try {
+			if (service.registerCheck(vo) != null) {
 				return "/User/UserRegisterFinFail";
+			} else {
+				if (service.register(vo) == 1) {
+					return "redirect:/";
+				} else {
+					return "/User/UserRegisterFinFail";
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		
+		return "/User/UserRegisterFinFail";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)

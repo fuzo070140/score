@@ -58,7 +58,6 @@ public class GameReviewController {
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String insertPOST(GameReviewVO vo, HttpServletRequest request) throws Exception {
 		service.insert(vo);
-		System.out.println(vo.getGameScore());
 		
 		return "redirect:/Game/readPage?gameNumber=" + vo.getGameNumber();
 	}

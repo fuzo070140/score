@@ -19,7 +19,7 @@ public class HomeController {
 	@Inject
 	private MainServiceImpl service;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String home(HttpServletRequest request) throws Exception {
 		System.out.println("GIT23");
 		return "home";

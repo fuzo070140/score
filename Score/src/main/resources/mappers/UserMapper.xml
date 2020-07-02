@@ -6,8 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.score.mapper.UserMapper">
 
 	<insert id="register">
-		INSERT INTO user (userID, userNickName, userPassWord, userEmail, userEmailCheck, userThumbImg, userCategory, userIntro) 
-		VALUES (#{userID}, #{userNickName}, #{userPassWord}, #{userEmail}, #{userEmailCheck}, #{userThumbImg}, #{userCategory}, #{userIntro})
+		INSERT INTO user (userID, userNickName, userPassWord, userEmail, userEmailCheck, userThumbImg, userCategory, userIntro ,userCompanyName,userCompanyAddress,userCompanyNumber,userManager,userManagerPhone) 
+		VALUES (#{userID}, #{userNickName}, #{userPassWord}, #{userEmail}, #{userEmailCheck}, #{userThumbImg}, #{userCategory}, #{userIntro},#{userCompanyName},#{userCompanyAddress},#{userCompanyNumber},#{userManager},#{userManagerPhone})
 	</insert>
 	
 	<select id="registerCheck" resultType="UserVO">
