@@ -35,7 +35,7 @@
 						<br/>
 					</c:forEach>
 				</div>
-				<a href="/score/Game/modify?gameNumber=${vo.gameNumber }" class="btn btn-primary">게임 수정 건의</a>
+				<a href="/score/gamereq/insert?gameNumber=${vo.gameNumber }" class="btn btn-primary">게임 수정 건의</a>
 				<a href="/score/gameReview/insert/${vo.gameNumber }" class="btn btn-primary">게임 리뷰 작성</a>
 			</div>
 		</div>

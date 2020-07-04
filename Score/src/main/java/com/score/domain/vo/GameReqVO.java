@@ -6,7 +6,7 @@ public class GameReqVO {
 	
 	private int gameReqNumber;
 	private int gameNumber;
-	private int userReqNumber;
+	private int userNumber;
 	private String userNickName;
 	private String gameTitle;
 	private String gameImg;
@@ -32,11 +32,11 @@ public class GameReqVO {
 	public void setGameNumber(int gameNumber) {
 		this.gameNumber = gameNumber;
 	}
-	public int getUserReqNumber() {
-		return userReqNumber;
+	public int getUserNumber() {
+		return userNumber;
 	}
-	public void setUserReqNumber(int userReqNumber) {
-		this.userReqNumber = userReqNumber;
+	public void setUserNumber(int userNumber) {
+		this.userNumber = userNumber;
 	}
 	public String getUserNickName() {
 		return userNickName;

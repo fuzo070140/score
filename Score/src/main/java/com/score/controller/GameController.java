@@ -111,7 +111,6 @@ public class GameController {
 		if(file.getSize() > 0) {
 			fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
 			vo.setGameImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-			System.out.println(vo.getGameImg());
 		}
 		
 		service.modify(vo);

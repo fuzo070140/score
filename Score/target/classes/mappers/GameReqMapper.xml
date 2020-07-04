@@ -5,4 +5,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.score.mapper.GameReqMapper">
 
+	<insert id="insert" parameterType="GameReqVO">
+		INSERT INTO gamereq
+		(gameNumber, userNumber, userNickName, gameTitle, gameImg, gameDeveloper, gameDistributor, gamePlatform, gameSupportStatus, gameGenre, gameAgeGroup)
+		VALUES (#{gameNumber}, #{userNumber}, #{userNickName}, #{gameTitle}, #{gameImg}, #{gameDeveloper}, #{gameDistributor}, #{gamePlatform}, #{gameSupportStatus}, #{gameGenre}, #{gameAgeGroup})
+	</insert>
+
 </mapper>
